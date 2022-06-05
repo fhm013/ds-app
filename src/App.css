@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+article {
+  padding: 100px 0px;
+}
+
+article div {
+  margin: 25px;
+}
+
+footer {
+  padding: 30px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

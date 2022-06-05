@@ -30,6 +30,10 @@
         "employeeApiLambda": {
           "deploymentBucketName": "amplify-awsfahmi-dev-174908-deployment",
           "s3Key": "amplify-builds/employeeApiLambda-584c6a47455465597434-build.zip"
+        },
+        "usersHandler": {
+          "deploymentBucketName": "amplify-awsfahmi-dev-174908-deployment",
+          "s3Key": "amplify-builds/usersHandler-376655374d4d6334696f-build.zip"
         }
       }
     }

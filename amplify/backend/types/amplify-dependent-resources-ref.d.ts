@@ -31,6 +31,12 @@ export type AmplifyDependentResourcesAttributes = {
             "Arn": "string",
             "Region": "string",
             "LambdaExecutionRole": "string"
+        },
+        "usersHandler": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
         }
     },
     "storage": {
@@ -44,7 +50,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "awsfahmiApi": {
+        "userApi": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"

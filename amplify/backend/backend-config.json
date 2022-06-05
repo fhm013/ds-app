@@ -95,6 +95,11 @@
           }
         }
       ]
+    },
+    "usersHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "storage": {
@@ -104,13 +109,13 @@
     }
   },
   "api": {
-    "awsfahmiApi": {
+    "userApi": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "employeeApiLambda",
+          "resourceName": "usersHandler",
           "attributes": [
             "Name",
             "Arn"
