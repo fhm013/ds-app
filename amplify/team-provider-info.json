@@ -9,7 +9,19 @@
       "UnauthRoleName": "amplify-awsfahmi-dev-174908-unauthRole",
       "StackName": "amplify-awsfahmi-dev-174908",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:855542201932:stack/amplify-awsfahmi-dev-174908/2104b030-e4bd-11ec-bc42-0ac23f4cd04c",
-      "AmplifyAppId": "d2sfqwdik1o1oh"
+      "AmplifyAppId": "d2sfqwdik1o1oh",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-awsfahmi-dev-174908-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "awsfahmiauth": {}
+      },
+      "function": {
+        "awsfahmiauthPreSignup": {
+          "deploymentBucketName": "amplify-awsfahmi-dev-174908-deployment",
+          "s3Key": "amplify-builds/awsfahmiauthPreSignup-52574542616c4847476a-build.zip"
+        }
+      }
     }
   }
 }

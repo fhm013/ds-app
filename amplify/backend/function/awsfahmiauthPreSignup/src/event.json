@@ -1,0 +1,10 @@
+{
+  "request": {
+    "userAttributes": {
+      "email": "testEmail@domain.com",
+      "name": "fahmi",
+      "birthdate": "01-01-2020"
+    }
+  },
+  "response": {}
+}

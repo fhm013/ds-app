@@ -1,7 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
 
-function App() {
+function App({ signOut, user }) {
   return (
     <div className="App">
       <header className="App-header">
@@ -15,11 +20,13 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          {user.email}
         </a>
+
+        <button onClick={signOut}>Signout</button>
       </header>
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
