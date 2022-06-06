@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./App.css";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import { API } from "aws-amplify";
 import axios from "axios";
 
 function App({ signOut, user }) {
   const myAPI =
     "https://05dvurz1mh.execute-api.ap-southeast-1.amazonaws.com/v1";
   const path = "/users";
+  const pathUpload = "/user/image-upload";
 
   const [input, setInput] = useState("");
   const [customers, setCustomers] = useState([]);
@@ -18,48 +18,39 @@ function App({ signOut, user }) {
   const handleFileInput = (e) => {
     // handle validations
     const file = e.target.files[0];
-    if (file.size < 1024) setSelectedFile(e.target.files[0]);
+    if (file.size < 2048) setSelectedFile(file);
   };
 
-  const submitForm = async () => {
+  const submitForm = async (event) => {
+    event.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("file", selectedFile);
-
-    const payload = await API.post("employee", "add", formData);
-    // axios
-    //   .post(UPLOAD_URL, formData)
-    //   .then((res) => {
-    //     alert("File Upload success");
-    //   })
-    //   .catch((err) => alert("File Upload Error"));
+    formData.append("file upload", selectedFile, selectedFile.name);
+    await axios
+      .post(myAPI + pathUpload, formData)
+      .then((res) => {
+        alert("File Upload success");
+        this.setSelectedFile(null);
+        this.setName("");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("File Upload Error");
+      });
+    console.log(formData);
   };
 
   React.useEffect(() => {
     getUsers();
-  }, [])
-  
+  }, []);
 
-  //Function to fetch from our backend and update customers array
   function getUsers(e) {
-    // let customerId = e.input;
     axios.defaults.baseURL = myAPI;
-    // axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
-    // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     axios
-      .get(path, {
-        headers: {
-          "Content-Type": "application/json;",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        let newCustomers = [...customers];
-        newCustomers.push(response);
+      .get(path)
+      .then((response) => response.data)
+      .then(data => {
+        console.log(data);
+        let newCustomers = data.Items;
         setCustomers(newCustomers);
       })
       .catch((error) => {
@@ -83,11 +74,7 @@ function App({ signOut, user }) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <input
-                type="file"
-                value={selectedFile}
-                onChange={handleFileInput}
-              />
+              <input type="file" onChange={handleFileInput} />
             </div>
             <div>
               <button onClick={submitForm}>Upload</button>
@@ -98,10 +85,10 @@ function App({ signOut, user }) {
           <h3>Data</h3>
           {customers.map((thisCustomer, index) => {
             return (
-              <div key={thisCustomer.userId}>
+              <div key={thisCustomer.id}>
                 <span>
-                  <b>CustomerId:</b> {thisCustomer.userId} - <b>CustomerName</b>
-                  : {thisCustomer.userName}
+                  <b>CustomerId:</b> {thisCustomer.id} - <b>CustomerName</b>
+                  : {thisCustomer.name}
                 </span>
               </div>
             );
@@ -110,7 +97,7 @@ function App({ signOut, user }) {
       </article>
       <footer>
         <div>
-          <button onClick={signOut}>Signout</button>
+          <button onClick={signOut}>SignOut</button>
         </div>
       </footer>
     </div>
