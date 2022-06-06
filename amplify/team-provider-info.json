@@ -16,24 +16,13 @@
     "categories": {
       "auth": {
         "awsfahmiauth": {},
-        "true": {}
+        "true": {},
+        "userPoolGroups": {}
       },
       "function": {
         "awsfahmiauthPreSignup": {
           "deploymentBucketName": "amplify-awsfahmi-dev-174908-deployment",
-          "s3Key": "amplify-builds/awsfahmiauthPreSignup-52574542616c4847476a-build.zip"
-        },
-        "employeeTableTriggere7f63298": {
-          "deploymentBucketName": "amplify-awsfahmi-dev-174908-deployment",
-          "s3Key": "amplify-builds/employeeTableTriggere7f63298-32734d6d6a454a546f63-build.zip"
-        },
-        "employeeApiLambda": {
-          "deploymentBucketName": "amplify-awsfahmi-dev-174908-deployment",
-          "s3Key": "amplify-builds/employeeApiLambda-584c6a47455465597434-build.zip"
-        },
-        "usersHandler": {
-          "deploymentBucketName": "amplify-awsfahmi-dev-174908-deployment",
-          "s3Key": "amplify-builds/usersHandler-376655374d4d6334696f-build.zip"
+          "s3Key": "amplify-builds/awsfahmiauthPreSignup-753552642f70346a5378-build.zip"
         }
       }
     }

@@ -38,6 +38,7 @@ article div {
 
 footer {
   padding: 30px;
+  background-color: #282c34;
 }
 @keyframes App-logo-spin {
   from {
