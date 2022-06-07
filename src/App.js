@@ -16,9 +16,20 @@ function App({ signOut, user }) {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileInput = (e) => {
-    // handle validations
-    const file = e.target.files[0];
-    if (file.size < 2048) setSelectedFile(file);
+    if (isImage(e)) {
+      const file = e.target.files[0];
+      if (file.size < 2048) setSelectedFile(file);
+    } 
+  };
+
+  const isImage = (prop) => {
+    const fileName = document.getElementById("fileName").value;
+        const idxDot = fileName.lastIndexOf(".") + 1;
+        const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile === "jpg" || extFile === "jpeg" || extFile === "png"){
+            return true
+        }
+        return false;   
   };
 
   const submitForm = async (event) => {
@@ -74,7 +85,7 @@ function App({ signOut, user }) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <input type="file" onChange={handleFileInput} />
+              <input type="file" onChange={handleFileInput} id="fileName" accept=".jpg,.jpeg,.png"/>
             </div>
             <div>
               <button onClick={submitForm}>Upload</button>
