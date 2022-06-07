@@ -18,7 +18,7 @@ function App({ signOut, user }) {
   const handleFileInput = (e) => {
     if (isImage(e)) {
       const file = e.target.files[0];
-      if (file.size < 2048) setSelectedFile(file);
+      setSelectedFile(file);
     } 
   };
 
